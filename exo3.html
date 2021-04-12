@@ -1,0 +1,51 @@
+<!Doctype html>
+<html>
+
+<head>
+
+    <script>
+        function load() {
+
+
+            xhr = null;
+            //Step 1 : On crée l'objet Ajax
+            xhr = new XMLHttpRequest();
+
+            //Step 2 : On teste l'état de l'objet Ajax
+            xhr.onreadystatechange = function () {
+
+                //alert("Etat de Ajax: " +xhr.readyState);*
+                if ((xhr.readyState == 4) && (xhr.status == 200)) {
+                    document.getElementById("def").innerHTML = xhr.responseText;
+                }
+
+                if ((xhr.readyState == 4) && xhr.status == 404) {
+                    alert("Fichier introuvale");
+                }
+
+            }
+
+
+            //Step 3 : On défini la cible
+            xhr.open('GET', 'candidats.php', true);  // connexion
+            xhr.send(null);
+
+        }
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <h1 align="center">Liste des candidats</h1>
+    <h4>Cliquer sur le bouton pour afficher la liste</h4>
+
+    <button onclick="load()">Liste Candidats</button>
+
+
+    <div id="def"></div>
+</body>
+
+</html>

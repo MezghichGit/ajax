@@ -2,6 +2,7 @@
 
 <?php
 
+// connexion via php à mysql
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,28 +14,18 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
 
+mysqli_select_db($conn,'stock');
 
+$produits = $conn->query("SELECT * FROM produit");
 
-/*
-//Step 1 : connexion au serveur mysql local avec login=root et mdp=""
-$con= mysqli_connect('localhost','root','');
+echo"<table align=center border=1>";
+echo"<tr><th>ID</th><th>Libelle</th><th>Prix</th><th>Quantite</th></tr>";
 
-//Step 2 : on choisi la base, ici c'est stock
-mysqli_select_db('stock',$con);
+foreach ($produits as $produit) {
+    
+    echo"<tr><td>".$produit["id"]."</td><td>".$produit["libelle"]."</td><td>".$produit["prix"]."</td><td>".$produit["qte"]."</tr>";
+}
 
-//Step 3 : notre requette Select
-$requette="SELECT * FROM produit" ;
-
-
-// Step 4 : exécuter la requette et sauvegarder le résultat dans la variable $data
-$data = mysqli_query($requette);
-
-// Step 5 on calcule le nombre de ligne dans $data
-$m = mysqli_num_rows($data);
-
-//Step 6 - echo : c'est pour afficher le contenu de $m
-echo $m;
-*/
+echo"</table>";
 ?>

@@ -15,9 +15,13 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
+// selection de la base de données
 mysqli_select_db($conn,'stock');
 
-$produits = $conn->query("SELECT * FROM produit");
+// récupération des produits
+$produits = $conn->query("SELECT * FROM produit");  // query = requette
+
+// afficher les données dans un tableau
 
 echo"<table align=center border=1>";
 echo"<tr><th>ID</th><th>Libelle</th><th>Prix</th><th>Quantite</th></tr>";

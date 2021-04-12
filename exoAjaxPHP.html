@@ -17,6 +17,7 @@
                 
                 if ((xhr.readyState == 4) && (xhr.status == 200)) {
                     // traitement doit se faire ici
+                    document.getElementById("produits").innerHTML = xhr.responseText;
                 }
 
                 if ((xhr.readyState == 4) && xhr.status == 404) {
@@ -43,7 +44,7 @@
 
     <button onclick="charger()">Charger les produits de la base</button>
 
-    <div id="produits" style="border:solid"></div>
+    <div id="produits"></div>
 </body>
 
 </html>
